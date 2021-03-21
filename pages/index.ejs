@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeriCity</title>
+</head>
+<body><center>Client is 
+    <% if(logged){ %> 
+Logged: <br><br>
+<img src="https://cdn.discordapp.com/avatars/<%- client.user.id %>/<%- client.user.avatar %>.webp?size=2048" style="width: 100px;height: 100px;border-radius: 50%;">
+<h2><b><%- client.user.username %>#<%- client.user.discriminator %> </b></h2><br>
+<button onclick="document.cookie = 'OwnerCity=; expires=Thu, 01 Jan 1970 00:00:00 GMT';window.location.reload()">Çıkış yap</button></center>
+    <% } else { %> 
+Not Logged!<br><br><button onclick="window.location.replace('/discord/login')">Giriş yap</button>
+    <% } %> </center>
+</body>
+</html>
+<style>
+body{word-wrap: break-word;}
+
+</style>

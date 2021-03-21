@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <title>PeriCity</title>
+</head>
+<body>
+
+    <div style="border-radius: 0;" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="navbar-header"><button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">PeriLake Archive</a></div>
+              <div class="navbar-collapse collapse" id="mobile_menu">
+                <ul class="nav navbar-nav">
+                  <li><a href="/category">Kategoriler</a></li>               
+                  <%if(logged) {%><li><a style="cursor: pointer;" onclick="document.cookie = 'OwnerCity=; expires=Thu, 01 Jan 1970 00:00:00 GMT';window.location.reload()">Çıkış Yap</a></li><%
+                  function temizle(array) {
+                    for (var i = 0; i < array.length; i++) {
+                      array[i] = array[i].replace("823200734132568115", 5).replace("823200754239668265", 4).replace("823200768805961808", 3).replace("823200785281187870", 2).replace("823200803447504928", 1)}
+                          return array.sort().reverse('')}
+                    var temiz=temizle(client.perms)[0]
+                    switch(temiz.toString()){
+                      case "1":%><li><a href="/panel" class="mod">Mod</a></li><% break;
+                      case "2":%><li><a href="/panel" class="modp">Mod+</a></li><% break;
+                      case "3":%><li><a href="/panel" class="admin">Admin</a></li><% break;
+                      case "4":%><li><a href="/panel" class="adminp">Admin+</a></li><% break;
+                      case "5":%><li><a href="/panel" class="owner">Owner</a></li><% break;}
+                    } else {%><li><a href="/discord/login">Giriş Yap</a></li><%}%>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <div id="txt">
+
+    <% posts.forEach(a => {%>
+      <div class="card"><%-a.name%><br><br><button onclick="window.location.replace(`/code?id=<%-a.id%>`)" class="card-button">Koda Git</button></div>
+  <%});%>
+
+    </div>
+
+
+</body>
+</html>
+<script>
+    function addcolorize(name,b){
+    var a=document.getElementsByClassName(name)
+    for(var i=0;i<a.length;i++){
+    a[i].style.color = "#"+b
+    }
+}
+addcolorize("owner","C27C0E")
+addcolorize("adminp","206694")
+addcolorize("admin","3498DB")
+addcolorize("modp","1F8B4C")
+addcolorize("mod","2ECC71")
+console.log("%cNe bakıon dayı dayı","color: #cab40f; font-size: 22px");
+debugger
+</script>
+<script src="/sweetalert2.js"></script>
+<link rel="stylesheet" href="/sweetalert2.css">
+<script>
+    const params = new URLSearchParams(window.location.search);
+if(params.get("errorcode")){
+switch(params.get("errorcode")){
+ case "1112":fire("Hata oluştu!","Giriş hatası!<br>"+decodeURI(params.get("error")));break;
+ case "1001":fire("Hata oluştu!","Sunucu kaynaklı yönlendirme hatası!<br>"+decodeURI(params.get("error")));break;
+ case "1000":fire("Hata oluştu!","Sunucu kaynaklı yönlendirme hatası!<br>"+decodeURI(params.get("error")));break;
+ case "1":fire("Hata oluştu!","Giriş hatası!<br>"+decodeURI(params.get("error")));break;
+default:fire('Bilinmeyen hata kodu!',params.get("errorcode"));break;
+}}
+
+function fire(a,b){Swal.fire(a,b,'error').then(()=>{window.location.replace("/")})}
+
+//Swal.fire('Hata Oluştu!'," ",'error')
+
+</script>
