@@ -83,6 +83,3 @@ process.openStdin().addListener("data", function(key) {
     var s = eval(key.toString());
     if (s) console.log(s)
 });
-
-db.set(`users.${new Date().getTime()}`, {name:"Merhaba Dünya",id:`${new Date().getTime()}`}).write()
-db.set(`users.${new Date().getTime()+1}`, {name:"Merhaba Dünya 2",id:`${new Date().getTime()+1}`}).write()
